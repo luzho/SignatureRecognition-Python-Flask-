@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+  {% block content %}
+  <div class="container">
+  	<div class="row">
+  		<div class="col-md-6">
+  			<div class = "row">
+  				<center>
+  				<form action="home" method="POST" enctype="multipart/form-data">
+			        <input id="file" type="file" name="file"><br/><br/>
+			        <input id="upload" type="hidden" value="Upload">
+			    </form>
+			    </center>
+  				
+  			</div>
+  			<div class = "row" id="divPreview"></div>
+
+  		</div>
+  		<div class="col-md-6">
+  			
+  		</div>
+  	</div>
+  </div>
+  {% endblock %}

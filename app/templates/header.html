@@ -1,0 +1,18 @@
+    <div class="row">
+      <div class="navbar navbar-default">
+        <div class="container-fluid ">
+          <div class="row">
+            <div class="navbar-collapse">
+              <div class="col-md-4"></div>
+              <div class="col-md-4"><h1><center>Signatures</center></h1></div>
+              {% if g.user is not none and g.user.is_authenticated() %}
+                <div class="col-md-2"><h1><center>{{ g.user.username }}</center></h1></div>
+                <div class="col-md-2"><a href=" {{ url_for('logout') }}"> Log out </a></div>
+              {% else%}  
+                <div class="col-md-4"><h1><center>Not log</center></h1></div> 
+              {% endif%}                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 

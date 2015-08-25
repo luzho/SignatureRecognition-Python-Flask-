@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="custom container">
+      <div class="row form">
+        <form action="user/login" method="POST">
+        <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="Email" required="required" autofocus="autofocus">
+        </div>
+        <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="Password" required="required" autofocus="autofocus">
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+      </div> 
+      <div class="row sing-up">
+      <div class="col-md-6"><label>New on Signatures?</label></div>
+      <div class="col-md-6 "><button type="button" class="btn btn-primary btn-lg boton hvr-float-shadow" data-toggle="modal" data-target="#myModal">Sign Up</button></div>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal">&times;</button>
+           <h1 class="modal-title">Sign Up</h1>
+        </div>
+        <div class="modal-body">
+          <form action="user/signup"role="form" class="form-align" method="POST">
+            <div class="form-group">
+              <label  for="name">Username <span  class="required"></span></label>
+              <input  type="text" class="input-small input-text form-control" name="username" value="" placeholder="" required="required" autofocus="autofocus">
+            </div>
+            <div class="form-group">
+              <label  for="email">Email <span  class="required"></span></label> 
+                  <input  type="email" class="input-small input-text form-control" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" id="email" name="email" value="" placeholder="" required="required">
+            </div>
+            <div class="form-group">
+              <label  for="password">Password </label>
+                  <input  type="password" class="input-small input-text form-control" pattern="^[a-zA-Z0-9_.]{6,20}$" id="password" name="password" value="" required="required" placeholder="" />
+            </div>
+            <div>
+                  <button id="Cancel-login" class="btn btn-primary btn-lg boton hvr-float-shadow" data-dismiss="modal">Cancel</button>
+                  <button id="Sign-login" class="btn btn-primary btn-lg boton hvr-float-shadow" type="submit">Sign Up</button>
+                  <label><input name="login" type="text" value="0" style="display:none" /></label>
+            </div>
+          </form> 
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

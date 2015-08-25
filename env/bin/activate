@@ -39,7 +39,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/carlos/Lineas/LineApi/env"
+VIRTUAL_ENV="/home/carlos/flaskProjects/signatureRecognition/env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
@@ -78,5 +78,3 @@ alias pydoc="python -m pydoc"
 if [ -n "$BASH" -o -n "$ZSH_VERSION" ] ; then
     hash -r 2>/dev/null
 fi
-
-export DATABASE_URL="postgresql://localhost/api"

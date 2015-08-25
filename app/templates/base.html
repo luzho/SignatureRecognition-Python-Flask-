@@ -1,0 +1,44 @@
+<html lang="en">
+    <head>
+        {% block head %}
+            <!-- jQuery -->
+            <script src="statics/vendor/jQuery/jquery1.11.0.min.js"></script>
+            <script src="statics/vendor/jQuery/jquery.min.js"></script>
+
+            <!-- Bootstrap -->
+            <link rel="stylesheet" href="statics/vendor/Bootstrap/bootstrap.min.css">
+            <link rel="stylesheet" href="statics/vendor/Bootstrap/bootstrap-theme.min.css">
+            <script src="statics/vendor/Bootstrap/bootstrap.min.js"></script>
+
+            <!-- Custom CSS -->
+            <link rel="stylesheet" href="statics/css/custom.css">
+
+            <!-- JavaScript Files -->
+            <script src="statics/js/custom.js"></script>
+
+            <title>
+                {% block title %}
+                    Signature
+                {% endblock %}
+            </title>
+        {% endblock %}
+    </head>
+    {% include "header.html" %}
+    <body>
+        {% for message in get_flashed_messages()%}
+            <div class= flash>
+                <center>{{ message }}</center>
+            </div>
+        {% endfor%}
+        <div id="content">
+            {% block content %}
+
+            {% endblock %}
+        </div>
+        <div id="footer">
+            {% block footer %}
+            
+            {% endblock %}
+        </div>
+    </body>
+</html>

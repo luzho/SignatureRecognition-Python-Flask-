@@ -1,0 +1,57 @@
+body {
+  background-color: #eee;
+  height:100%;
+  margin:0;
+  padding:0;
+}
+
+a, a:hover{
+  color: #FFFFFF;
+}
+
+.custom {
+  padding-top: 20px;
+  width: 250px;
+}
+
+.some_wrap {
+  padding-left: 20px;
+  padding-top: 20px;
+  width: 500px;
+}
+
+.badge {
+  cursor: pointer;
+}
+
+.badge:hover {
+  text-decoration: underline;
+}
+
+.content {
+    height:100%;
+    min-height:300px; /* This is the height of your content + height of the footer */
+}
+
+.footer {
+
+    height:24px; // Replace with the height your footer should be
+    width: 100%; // Don't change
+    background-image: none;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-position: 0% 0%;
+    position: fixed;
+    bottom: 0pt;
+    left: 0pt;
+
+}   
+
+    .footer_contents {
+
+        height:24px; // Replace with the height your footer should be
+        width: 1000px; // Visible width of footer
+        margin:auto;
+
+    }
+
