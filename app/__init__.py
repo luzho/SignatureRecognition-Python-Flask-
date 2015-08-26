@@ -1,9 +1,14 @@
+import Main
 from flask import Flask, request, render_template, flash, g, session, redirect, url_for
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager
 from flask.ext.login import login_user , logout_user , current_user , login_required
 
 app = Flask (__name__, template_folder = 'templates',static_folder = 'statics')
+
+app.config['UPLOAD_FOLDER'] = 'temp/'
+app.config['ALLOWED_EXTENSIONS'] = set(['pdf', 'png', 'jpg', 'jpeg'])
+
 app.config.from_object('config')
 db = SQLAlchemy(app)
 
@@ -27,6 +32,10 @@ def before_request():
 def home():
 	if request.method == 'GET':
 		return render_template('user/home.html')
+
+	if request.method == 'POST':
+		file = request.files['file']
+
 	
 
 @app.route('/logout', methods=['GET','POST'])
