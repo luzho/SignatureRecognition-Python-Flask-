@@ -10,18 +10,23 @@ def showImage(name):
 	cv2.destroyAllWindows()
 
 #Convert file to whatever type to another type, preferably images
-def convert(filein, fileout):
-	os.system('convert '+filein+ ' ' +fileout)
-	img = cv2.imread(fileout)
+def convert(fileIn, fileOut):
+	os.system('convert '+fileIn+ ' ' +fileOut)
+	img = cv2.imread(fileOut)
 	img = cv2.resize(img,(816,1056),interpolation = cv2.INTER_LINEAR)
-	cv2.imwrite(fileout,img)
+	cv2.imwrite(fileOut,img)
 
 def removeBackground(image):
 	tmp = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
-	ret,alpha = cv2.threshold(tmp,160,255,cv2.THRESH_BINARY_INV)
-	b, g , r = cv2.split()
+	alpha = cv2.adaptiveThreshold(tmp, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 11, 2)
+	#ret,alpha = cv2.threshold(tmp,200,255,cv2.THRESH_BINARY_INV)
+	b, g , r = cv2.split(image)
+	b = cv2.adaptiveThreshold(b, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
+	g = cv2.adaptiveThreshold(g, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
+	r = cv2.adaptiveThreshold(r, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
 	dst = cv2.merge ((b,g,r,alpha))
-	return dst
+	blur = cv2.GaussianBlur(dst,(1,1),0)
+	return blur
 
 #Get 2 signatures from PDF file
 def getSignatures(filename):
@@ -43,20 +48,20 @@ def getSignatures(filename):
 
 	#Ordered contours by Area... From the highest to the lowest area 
 	contoursSorted = sorted(contours, key=cv2.contourArea, reverse=True)
-
+	
 	#First contour with higher area
 	cnt = contoursSorted[0]
 	x,y,w,h = cv2.boundingRect(cnt)
+	crop_img = img[y+8: y+(h-8), x+8:x+(w-8)]
 
 	#Second contour with higher area
 	cnt2 = contoursSorted[1]
 	xn,yn,wn,hn = cv2.boundingRect(cnt2)
-
-	#Get 2 image with higher area
-	img = cv2.imread("temp.jpg")
-	crop_img = img[y+12: y+(h+3), x+12:x+(w+5)] # Crop from x, y, w, h -> 100, 200, 300, 400
-	crop_img1 = img[yn+25: yn+(hn+10), xn+12:xn+(wn+5)]
-
-
+	crop_img1 = img[yn+8: yn+(hn-8), xn+8:xn+(wn-8)]
 
 	return (removeBackground(crop_img),removeBackground(crop_img1))
+
+#sig1,sig2=getSignatures("doc.jpg")
+#cv2.imwrite("1.png",sig1)
+#cv2.imwrite("2.png",sig2)
+

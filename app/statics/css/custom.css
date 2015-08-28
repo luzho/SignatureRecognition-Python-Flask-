@@ -9,6 +9,14 @@ a, a:hover{
   color: #FFFFFF;
 }
 
+.divCol{
+  padding-top: 6%;
+}
+
+.divSignature{
+  margin-top: 10%;
+}
+
 .custom {
   padding-top: 20px;
   width: 250px;

@@ -6,18 +6,37 @@
   			<div class = "row">
   				<center>
   				<form action="home" method="POST" enctype="multipart/form-data">
-			        <input id="file" type="file" name="file"><br/><br/>
-			        <input id="upload" type="hidden" value="Upload">
+			        <input class="btn btn-primary" id="file" type="file" name="file"><br/><br/>
+			        <input class="btn btn-primary" id="upload" type="hidden" value="Upload">
 			    </form>
 			    </center>
   				
   			</div>
-  			<div class = "row" id="divPreview"></div>
 
+            {% if control is not none and g.user.is_authenticated() %}
+              <div class = "row" id="divPreview">
+                <center><img id="preview1" src="{{ pathSrc }}" alt="" height="390" width="300"></center> 
+              </div>  
+            {% else%} 
+              <div class = "row" id="divPreview"></div>  
+            {% endif%}   
+  	
   		</div>
       
-  		<div class="col-md-6">
-  			
+  		<div class="col-md-6 divCol">
+  			    {% if control is not none and g.user.is_authenticated() %}
+              <div class = "row divSignature">
+               <center><img class = "images" id="preview1" src="{{ pathFile1 }}" alt="" height="86" width="626"></center>
+               <button type="submit" class="btn btn-primary">Download</button>
+
+              </div>  
+              <div class = "row divSignature">
+               <center><img class = "images" id="preview2" src="{{ pathFile2 }}" alt="" height="86" width="626"></center>
+               <button type="submit" class="btn btn-primary">Download</button> 
+              </div> 
+            {% else%}  
+              <h1><center>Not Signatures</center></h1>
+            {% endif%} 
   		</div>
   	</div>
   </div>
