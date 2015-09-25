@@ -1,0 +1,4 @@
+== Signature Recognition from PDF or JPG
+
+Web app made in Python-Flask
+Any questions, send me a note to my email 
